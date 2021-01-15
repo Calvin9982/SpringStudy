@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>体检项目查询</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+
+<body>
+<div class="container inputState">
+    <div class="middle">
+        <h2>体检项目查询</h2>
+    </div>
+
+    <form class="myform" action="/queryItem" id="myform" onsubmit="return validate();">
+        <div class="row ">
+            <div class="form-group col-sm-8 control">
+                <select class="form-control" name="itemName" id="itemName">
+                    <option selected>--请选择项目类别--</option>
+                    <option th:each="list:${nameLists}">
+                        <span th:text="${list}"></span>
+                    </option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-info" id="btn">查询</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container ">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">项目名称</th>
+<!--                <th scope="col">所属类别</th>-->
+                <th scope="col">是否必查</th>
+                <th scope="col">查考值</th>
+                <th scope="col">价格</th>
+                <th scope="col">说明</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="item:${pageInfo.list}">
+                <td th:text="${item.itemName}"></td>
+<!--                <td th:text="${item.itemTypes.typeName}"></td>-->
+                <td>
+                    <span th:if="${item.neccssary == 1}">是</span>
+                    <span th:if="${item.neccssary == 0}">否</span>
+                </td>
+                <td th:text="${item.ref}"></td>
+                <td th:text="${item.price}"></td>
+                <td th:text="${item.info}"></td>
+                <td>
+                    <a th:href="@{/updateItem(itemId=${item.itemId})}">修改</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link"><span th:text="第+${pageInfo.pageNum}+页"></span></a></li>
+            <li class="page-item"><a class="page-link" th:href="@{/index}">首页</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{/index(pageNum=1)}">1</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{/index(pageNum=2)}">2</a></li>
+            <li class="page-item"><a class="page-link" th:href="@{/index(pageNum=${pageInfo.getNextPage()})}">Next</a></li>
+        </ul>
+
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="../js/jquery-3.5.1.js"></script>
+<script type="text/javascript" >
+function validate(){
+            var itemName=$("#itemName").val();
+            if(itemName.trim() == "--请选择项目类别--"){
+                alert("请选择项目类别进行查询");
+                return false;
+            }
+            else{
+                return true;
+            }
+}
+</script>
+</body>
+</html>

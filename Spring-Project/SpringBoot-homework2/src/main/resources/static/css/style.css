@@ -1,0 +1,23 @@
+.middle {
+    font-size: 35px;
+    font-weight: bolder;
+    text-align: center;
+}
+.inputState{
+    padding-left: 20px;
+    padding-top: 30px;
+}
+label{
+    font-size: 18px;
+}
+.Checkbox{
+    padding-right: 10px;
+}
+
+.aa{
+    color: white;
+}
+.tdd{
+    background: white;
+    text-align: center;
+}

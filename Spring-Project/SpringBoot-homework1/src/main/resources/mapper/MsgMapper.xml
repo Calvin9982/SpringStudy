@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.weupgo.ssm.dao.MsgMapper">
+
+    <insert id="insertMsg"  parameterType="cn.weupgo.ssm.po.Msg">
+        insert into air_quality_index(id,district,monitor_time,pm10,pm25,monitoring_station,create_date)
+        values(#{id},#{district},#{monitor_time},#{pm10},#{pm25},#{monitoring_station},#{create_date})
+    </insert>
+
+    <select id="queryMsgByDistrict" parameterType="java.lang.String"  resultType="cn.weupgo.ssm.po.Msg">
+        select id,monitor_time,pm10,pm25,monitoring_station
+        from air_quality_index
+        where district=#{district}
+    </select>
+
+
+    <select id="queryAllMsg" parameterType="java.lang.String"  resultType="cn.weupgo.ssm.po.Msg">
+        select id,monitor_time,pm10,pm25,monitoring_station
+        from air_quality_index
+    </select>
+
+</mapper>

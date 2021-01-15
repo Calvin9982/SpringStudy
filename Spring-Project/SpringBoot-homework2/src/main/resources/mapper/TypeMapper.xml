@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.weupgo.homework.dao.TypeMapper">
+
+    <select id="queryAllType"  resultMap="resultItemTypes">
+        select
+            *
+        from itemtypes
+    </select>
+
+    <select id="queryTypeIdByName" resultType="java.lang.Integer" >
+        select
+            type_id
+        from itemtypes
+        where type_name=#{typeName}
+    </select>
+
+    <resultMap id="resultItemTypes" type="cn.weupgo.homework.po.ItemTypes">
+        <id property="typeId" column="type_id" />
+        <result property="typeName" column="type_name"/>
+    </resultMap>
+</mapper>

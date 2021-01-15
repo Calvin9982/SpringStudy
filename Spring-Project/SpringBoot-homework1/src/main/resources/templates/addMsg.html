@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>添加空气质量信息</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+<div id="formwrapper">
+    <form action="/insertMsg"  id="MsgForm">
+        <fieldset>
+            <h2 style="padding-left: 150px;padding-bottom: 10px;">添加空气质量信息</h2>
+            <div>
+                <label>监测区域</label>
+                <select name="district" id="district">
+                    <option value="西城区" selected="selected">西城区</option>
+                    <option value="东城区">东城区</option>
+                    <option value="海淀区">海淀区</option>
+                    <option value="朝阳区">朝阳区</option>
+                    <option value="丰台区">丰台区</option>
+                </select>
+            </div>
+            <div>
+                <label>监测日期</label>
+                <input type="datetime-local" name="monitor_time" id="monitor_time"/>
+                <br/>
+            </div>
+            <div>
+                <label>PM10值</label>
+                <input type="text" name="pm10" id="pm10"/>
+                <br/>
+            </div>
+            <div>
+                <label>PM25值</label>
+                <input type="text" name="pm25" id="pm25"/>
+                <br/>
+            </div>
+            <div>
+                <label>监测站</label>
+                <input type="text" name="monitoring_station" id="monitoring_station"/>
+                <br/>
+            </div>
+            <div class="enter">
+                <button type="submit" id="btn">提交</button>
+                <button type="reset">重置</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+</body>
+</html>

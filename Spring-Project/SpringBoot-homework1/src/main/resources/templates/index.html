@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>空气质量监测信息系统</title>
+</head>
+
+<body>
+<div class="center-in-center">
+    <h2> 空气质量监测信息系统</h2><br/>
+    <form class="indexForm">
+        <label>监测区域：</label>
+        <select name="district" id="district">
+            <option value="不限" selected="selected">不限</option>
+            <option value="西城区" >西城区</option>
+            <option value="东城区">东城区</option>
+            <option value="海淀区">海淀区</option>
+            <option value="朝阳区">朝阳区</option>
+            <option value="丰台区">丰台区</option>
+        </select>
+        <button>查找</button>
+        <a th:href="@{/addMsg}" target="_blank">添加空气质量信息</a>
+    </form>
+    <br/>
+
+    <table class="pure-table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>区域</th>
+            <th>监测时间</th>
+            <th>PM10数据</th>
+            <th>PM2.5数据</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:if="${#lists.isEmpty(msg)}">
+            <td > 抱歉，暂无数据</td>
+        </tr>
+            <tr th:unless="${#lists.isEmpty(msg)}" th:each="msg:${msg}">
+                <td th:text="${msg.id}"></td>
+                <td th:text="${msg.district}"></td>
+                <td th:text="${msg.monitor_time}"></td>
+                <td th:text="${msg.pm10}"></td>
+                <td th:text="${msg.pm25}"></td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</div>
+</body>
+</html>

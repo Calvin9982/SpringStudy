@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.weupgo.homework.dao.ItemMapper">
+
+
+    <select id="queryItemsByName" parameterType="java.lang.String"  resultMap="resultPeItems">
+        select
+            item_id,item_name,type_name,ref,price,info,neccssary
+        from peitems p inner join itemTypes i
+         where item_name=#{itemName} and p.type_id=i.type_id
+    </select>
+
+    <select id="queryItemsById"  resultMap="resultPeItems">
+        select
+            item_id,item_name,type_name,ref,price,info,neccssary
+        from peitems p inner join itemTypes i
+        where item_id=#{itemId} and p.type_id=i.type_id
+    </select>
+
+    <select id="queryAllItemName"  resultType="java.lang.String">
+       select item_name
+       from peitems
+    </select>
+
+    <select id="queryAllItems" resultMap="resultPeItems">
+        select *
+        from peitems
+    </select>
+
+    <update id="updateItem" parameterType="cn.weupgo.homework.po.PeItems">
+            update peitems
+            set item_name = #{itemName},price= #{price},ref= #{ref},info= #{info},neccssary= #{neccssary},type_id= #{typeId}
+            where item_id= #{itemId}
+    </update>
+
+    <resultMap id="resultPeItems" type="cn.weupgo.homework.po.PeItems">
+        <id property="itemId" column="item_id" />
+        <result property="itemName" column="item_name"/>
+        <result property="neccssary" column="neccssary"  />
+        <result property="ref" column="ref"/>
+        <result property="price" column="price"/>
+        <result property="info" column="info"/>
+        <association property="itemTypes" javaType="cn.weupgo.homework.po.ItemTypes" >
+            <id property="typeId" column="type_id"></id>
+            <result  property="typeName" column="type_name"></result>
+        </association>
+    </resultMap>
+
+</mapper>
